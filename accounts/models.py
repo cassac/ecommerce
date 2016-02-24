@@ -8,7 +8,7 @@ class MailingAddress(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 	address_line_1 = models.CharField(max_length=100)
-	address_line_2 = models.CharField(max_length=100)
+	address_line_2 = models.CharField(max_length=100, blank=True)
 	city = models.CharField(max_length=50)
 	state_province = models.CharField(max_length=50)
 	postal_code = models.CharField(max_length=20)

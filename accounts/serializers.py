@@ -3,15 +3,14 @@ from rest_framework import serializers
 from accounts.models import MailingAddress
 
 
-class MailingAddressSerializer(serializers.ModelSerializer):
+class MailingAddressSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = MailingAddress
-		fields = ('user', 'first_name', 'last_name', 'address_line_1',
+		fields = ('id', 'url', 'user', 'first_name', 'last_name', 'address_line_1',
 			'address_line_2', 'city', 'state_province', 'postal_code',
 			'country', 'phone')
 
-# Serializers define the API representation.
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 	mailingaddress_set = MailingAddressSerializer(many=True, read_only=True)
 
