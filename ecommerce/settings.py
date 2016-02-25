@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount', 
     # Local Apps
     'accounts',
+    'products',
     # Other Apps
     'django_extensions',
 
