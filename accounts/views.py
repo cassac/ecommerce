@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from accounts.permissions import IsOwnerOrReadOnly, EditUserIsAdminOrUser
+from accounts.permissions import IsOwnerOrReadOnly, EditIfUserIsAdminOrUser
 from accounts.models import MailingAddress
 from accounts.serializers import MailingAddressSerializer, UserSerializer
 from rest_framework import generics, viewsets, permissions
@@ -10,7 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-	                     EditUserIsAdminOrUser)
+	                     EditIfUserIsAdminOrUser)
 
 	@detail_route(methods=['GET', 'PUT'], permission_classes=[], url_path='mailingaddress')
 	def mailingaddress(self, request, pk):
