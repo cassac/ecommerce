@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
 
 from rest_framework.routers import DefaultRouter
 
@@ -11,9 +12,12 @@ router.register(r'users', AccountsViews.UserViewSet)
 router.register(r'mailingaddress', AccountsViews.MailingAddressViewSet)
 router.register(r'products', ProductsViews.ProductViewSet)
 router.register(r'productvariation', ProductsViews.ProductVariationViewSet)
+router.register(r'productimage', ProductsViews.ProductImageViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))   
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': settings.DEBUG}), 
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': settings.DEBUG}),       
 ]
