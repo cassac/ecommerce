@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route
 from products.permissions import EditIfIsAdminUser
-from products.models import Product, ProductVariation
-from products.serializers import ProductSerializer, ProductVariationSerializer
+from products.models import Product, ProductVariation, ProductImage
+from products.serializers import (ProductSerializer, ProductVariationSerializer, 
+	ProductImageSerialzer)
 
 class ProductViewSet(viewsets.ModelViewSet):
 	queryset = Product.objects.all()
@@ -20,8 +21,8 @@ class ProductVariationViewSet(viewsets.ModelViewSet):
 
 	queryset = ProductVariation.objects.all()
 	serializer_class = ProductVariationSerializer
-	# permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-	#                       IsOwnerOrReadOnly,)
-	# def perform_create(self, instance):
-	# 	serializer = ProductVariationSerializer(instance, partial=True)
-	# 	serializer.save(owner=self.request.user)
+
+class ProductImageViewSet(viewsets.ModelViewSet):
+
+	queryset = ProductImage.objects.all()
+	serializer_class = ProductImageSerialzer
