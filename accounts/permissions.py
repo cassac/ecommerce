@@ -1,21 +1,25 @@
 from rest_framework import permissions
 
 
-class ViewEditIfAdminOrUser(permissions.BasePermission):
+class ViewIfAdminOrSelf(permissions.BasePermission):
     """
-    Custom permission to only allow owners and admin view/edit
+    Custom permission to only allow admin or self to view
     """
 
+    def has_permission(self, request, view):
+        # Can only view asset if belongs to user or user is admin
+        return request.user.id == int(view.kwargs['pk']) or request.user.is_staff
+
+
+class EditIfAdminOrSelf(permissions.BasePermission):
+    """
+    Custom permission to only allow admin or self to edit
+    """
+    def has_permission(self, request, view):
+        # Must be staff or authenticated user, then has_object_permission
+        # Will check if user is the owner of the object
+        return request.user.is_staff or not request.user.is_anonymous()
+
     def has_object_permission(self, request, view, obj):
-        # Only user or admin may look at user profiles and addresses
-        # Try/except used for differentiating between MailingAddress object and
-        # User object. For a MailingAddress object the user attribute
-        # is referenced for authentication. For a User object the request
-        # user is referenced for authentication.
-        try:
-            # For MailingAddress object and other User related models
-            return obj.user == request.user or request.user.is_staff
-        except:
-            # For User object
-            return obj == request.user or request.user.is_staff
-        return False
+        # User must be an admin or owns the object
+        return obj.user == request.user or request.user.is_staff
