@@ -1,3 +1,5 @@
+from django.shortcuts import render
+
 from django.contrib.auth.models import User
 from accounts.permissions import ViewIfAdminOrSelf, EditIfAdminOrSelf
 from accounts.models import MailingAddress
@@ -6,6 +8,10 @@ from rest_framework import generics, viewsets, permissions
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.request import Request
+
+def user_mailing_address(request):
+	context = {'foo': 'variable from view'}
+	return render(request, 'accounts/mailingaddress.html', context)
 
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
