@@ -1,3 +1,4 @@
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,11 +12,54 @@
 			  margin-top: 40px;
 			  border-top: 1px solid #eee;
 			}
-			
 		</style>
+		{% bootstrap_css %}
 	</head>
 	<body>
 
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close loginModalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="loginModalLabel">Login
+		        </h4>
+		      </div>
+		      <div class="modal-body">
+				<div class="container-fluid">
+
+					<form role="form" method="post">
+		              {% csrf_token %}
+
+		              <div id="div_id_username" class="clearfix control-group ">
+		                <div class="form-group">
+		                  <label for="id_username">Username:</label>
+		                  <input name="username" maxlength="100" autocapitalize="off" autocorrect="off" class="form-control textinput textInput" id="id_username" required="" type="text">
+		                  
+		                </div>
+		              </div>
+
+		              <div id="div_id_password" class="clearfix control-group ">
+		                <div class="form-group">
+		                  <label for="id_password">Password:</label>
+		                  <input name="password" maxlength="100" autocapitalize="off" autocorrect="off" class="form-control textinput textInput" id="id_password" required="" type="password">
+		                  
+		                </div>
+		              </div>
+
+		              <div class="form-actions-no-box">
+		                <input id='loginSubmitBtn' name="submit" value="Log in" class="btn btn-primary form-control" id="submit-id-submit" type="submit">
+		              </div>
+		            </form>
+
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 		<div class="container">
 		
@@ -46,6 +90,7 @@
 
 		{% block scripts %}
 			<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+			{% bootstrap_javascript %}
 		{% endblock %}
 	</body>
 </html>

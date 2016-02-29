@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # The Django sites frameowk is required
     'django.contrib.sites',
     'rest_framework',
+    'rest_framework.authtoken',
     # All-auth required
     'allauth',
     'allauth.account',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'products',
     # Other Apps
     'django_extensions',
+    'bootstrap3',
 
 ]
 

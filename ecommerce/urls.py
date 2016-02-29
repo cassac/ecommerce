@@ -15,6 +15,7 @@ router.register(r'productvariation', ProductsViews.ProductVariationViewSet)
 router.register(r'productimage', ProductsViews.ProductImageViewSet)
 
 urlpatterns = [
+	url(r'^login/$', AccountsViews.login_view, name='user-login'),
 	url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
