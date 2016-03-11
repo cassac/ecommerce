@@ -1,0 +1,20 @@
+{% extends "main_base.html" %}
+{% load static %}
+
+
+{% block title %}
+Shop - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div>
+	<h1>Product Page</h1>
+	<p>Products here</p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static "js/products.js" %}"></script>
+{% endblock %}

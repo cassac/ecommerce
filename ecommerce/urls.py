@@ -17,6 +17,7 @@ router.register(r'productimage', ProductsViews.ProductImageViewSet)
 urlpatterns = [
 	url(r'^login/$', AccountsViews.login_view, name='user-login'),
 	url(r'^accounts/', include('accounts.urls')),
+	url(r'^products/', include('products.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.shortcuts import render
+# DJANGO REST
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route
 from products.permissions import EditIfIsAdminUser
@@ -26,3 +28,8 @@ class ProductImageViewSet(viewsets.ModelViewSet):
 
 	queryset = ProductImage.objects.all()
 	serializer_class = ProductImageSerialzer
+
+def display_products(request):
+	products = Product.objects.all()
+	context = {'products': products}
+	return render(request, 'products/index.html', context)
