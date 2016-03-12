@@ -24,10 +24,10 @@ var columnItem = function(imageUrl, title, price, detailsUrl){
                                         '</div>' +
                                     '</div>' +
                                     '<div class="separator clear-left">' +
-                                        '<p class="btn-add">' +
-                                            '<i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p>' +
-                                        '<p class="btn-details">' +
-                                            '<i class="fa fa-list"></i><a href="'+ detailsUrl +'" class="detailsBtn hidden-sm">More details</a></p>' +
+                                        '<p class="btn-add cartButton">' +
+                                            '<i class="fa fa-shopping-cart"></i><a href="'+ '#' +'" class="hidden-sm">Add to cart</a></p>' +
+                                        '<p class="btn-details detailsBtn">' +
+                                            '<i class="fa fa-list"></i><a href="'+ detailsUrl +'" class="hidden-sm">More details</a></p>' +
                                     '</div>' +
                                     '<div class="clearfix">' +
                                     '</div>' +
