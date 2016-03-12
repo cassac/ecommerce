@@ -1,7 +1,30 @@
 $(document).on('click', '.detailsBtn', function(event){
+
   event.preventDefault();
-  alert('display details of...');
-});
+
+  var detailUrl = $( this ).attr('href');
+
+  $('#productDetailsModal').modal('show');
+
+  var displayModal = function(details) {
+    console.log(details);
+      $('#productDetailsModalLabel').text(details.title);
+  }
+
+  $.ajax({
+    url: detailUrl,
+    type: 'GET',
+    contentType: 'application/json;charset=UTF-8',
+      dataType: "json",
+      success: function(data){
+        displayModal(data);
+      },
+      error: function(error){
+        console.log(error);
+      } 
+  }) // end ajax
+
+}); // end on click detailsBtn
 
 var insertUpperCarousel = function(products) {
 
@@ -28,9 +51,9 @@ var insertUpperCarousel = function(products) {
 		
 		counter++;
 
-	});
+	}); // end each
 
-}
+} // end insertUpperCarousel
 
 $(document).ready(function(){
 
@@ -47,4 +70,4 @@ $(document).ready(function(){
   		} 
 	}) // end ajax
 
-});
+}); // end document ready
