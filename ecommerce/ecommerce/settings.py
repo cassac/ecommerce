@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Local Apps
     'accounts',
     'products',
+    'carts',
     # Other Apps
     'django_extensions',
     'bootstrap3',
