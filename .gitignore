@@ -1,5 +1,6 @@
 *.sqlite3
 *.pyc
-*/migrations/
+/migrations/
+ecommerce/carts/migrations/
 static/media/
 static/static_root/
