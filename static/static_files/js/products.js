@@ -2,7 +2,7 @@ $(document).on('click', '.detailsBtn', function(event){
 
   event.preventDefault();
 
-  var detailUrl = $( this ).attr('href');
+  var detailUrl = $( this ).find('a').attr('href');
 
   $('#productDetailsModal').modal('show');
 
