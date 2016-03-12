@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	{% block head %}
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href='{{ STATIC_URL }}fav.ico'  type="image/ico">
 		<title>{% block title %}Ecommerce{% endblock %}</title>
@@ -14,6 +15,7 @@
 			}
 		</style>
 		{% bootstrap_css %}
+	{% endblock %}
 	</head>
 	<body>
 
