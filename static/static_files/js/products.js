@@ -7,14 +7,15 @@ $(document).on('click', '.detailsBtn', function(event){
   $('#productDetailsModal').modal('show');
 
   var displayModal = function(details) {
-    var images = details.productimage_set;
-      $('#productDetailsModalLabel').text(details.title);
-      $('#productDetailsModalMainImage').attr('src', images[0].image);
 
-    $('#pictureDisplayThumbnails').clone();
+    var images = details.productimage_set;
+    $('#productDetailsModalLabel').text(details.title);
+    $('#productDetailsModalMainImage').attr('src', images[0].image);
+    $('.product-desc').text(details.description);
+    $('.product-title').text(details.title);
+    $('.product-price').text(details.price);
 
     $.each(images, function(index, value) {
-      console.log(index, value);
       imgElement = '<img style="padding-top:5px;max-width:50px;max-height:50px;"'+
       ' src="'+ value.image +'" alt="'+ details.title +'" class="center-block">';
       $('#pictureDisplayThumbnails').append(imgElement);
