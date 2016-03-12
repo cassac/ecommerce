@@ -1,4 +1,30 @@
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+/* Product Details Modal */
+.product-rating{
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.product-title{
+    font-size: 20px;
+}
+
+.product-desc{
+    font-size: 14px;
+}
+
+.product-price{
+    font-size: 22px;
+}
+
+.product-stock{
+    color: #74DF00;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+/* Product Display */
 .col-item
 {
     border: 1px solid #E1E1E1;
