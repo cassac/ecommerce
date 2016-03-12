@@ -1,7 +1,7 @@
 carouselfRowHead = '<div class="item active"><div class="row">';
 carouselfRowTail = '</div></div>';
 
-var columnItem = function(imageUrl, title, price){
+var columnItem = function(imageUrl, title, price, detailsUrl){
 	item = '<div class="col-sm-3">'+
                     '<div class="col-item">'+
                                 '<div class="photo">' +
@@ -25,9 +25,9 @@ var columnItem = function(imageUrl, title, price){
                                     '</div>' +
                                     '<div class="separator clear-left">' +
                                         '<p class="btn-add">' +
-                                            '<i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p>' +
+                                            '<i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p>' +
                                         '<p class="btn-details">' +
-                                            '<i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p>' +
+                                            '<i class="fa fa-list"></i><a href="'+ detailsUrl +'" class="detailsBtn hidden-sm">More details</a></p>' +
                                     '</div>' +
                                     '<div class="clearfix">' +
                                     '</div>' +

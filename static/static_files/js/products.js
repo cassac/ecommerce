@@ -1,4 +1,7 @@
-
+$(document).on('click', '.detailsBtn', function(event){
+  event.preventDefault();
+  alert('display details of...');
+});
 
 var insertUpperCarousel = function(products) {
 
@@ -9,10 +12,11 @@ var insertUpperCarousel = function(products) {
   		item = columnItem(
   			value.productimage_set[0].image, 
   			value.title, 
-  			value.price
+  			value.price,
+        value.url
   			);
 
-  		if (!counter%3) {
+  		if (counter%3) {
   			carouselfRowHead += item;
   		} else {
   			carouselfRowHead += item;
