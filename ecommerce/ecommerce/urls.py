@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from accounts import views as AccountsViews
 from products import views as ProductsViews
+from carts import views as CartsViews
 
 router = DefaultRouter()
 router.register(r'users', AccountsViews.UserViewSet)
@@ -13,6 +14,8 @@ router.register(r'mailingaddress', AccountsViews.MailingAddressViewSet)
 router.register(r'products', ProductsViews.ProductViewSet)
 router.register(r'productvariation', ProductsViews.ProductVariationViewSet)
 router.register(r'productimage', ProductsViews.ProductImageViewSet)
+router.register(r'carts', CartsViews.CartViewSet)
+router.register(r'cartsitem', CartsViews.CartItemViewSet)
 
 urlpatterns = [
 	url(r'^login/$', AccountsViews.login_view, name='user-login'),
