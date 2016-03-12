@@ -7,8 +7,19 @@ $(document).on('click', '.detailsBtn', function(event){
   $('#productDetailsModal').modal('show');
 
   var displayModal = function(details) {
-    console.log(details);
+    var images = details.productimage_set;
       $('#productDetailsModalLabel').text(details.title);
+      $('#productDetailsModalMainImage').attr('src', images[0].image);
+
+    $('#pictureDisplayThumbnails').clone();
+
+    $.each(images, function(index, value) {
+      console.log(index, value);
+      imgElement = '<img style="padding-top:5px;max-width:50px;max-height:50px;"'+
+      ' src="'+ value.image +'" alt="'+ details.title +'" class="center-block">';
+      $('#pictureDisplayThumbnails').append(imgElement);
+    })
+
   }
 
   $.ajax({
@@ -25,6 +36,11 @@ $(document).on('click', '.detailsBtn', function(event){
   }) // end ajax
 
 }); // end on click detailsBtn
+
+$('#productDetailsModal').on('hidden.bs.modal', function(){
+  // removes thumbnail images from previously opened product details modal
+  $('#pictureDisplayThumbnails').empty();
+});
 
 var insertUpperCarousel = function(products) {
 
