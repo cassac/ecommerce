@@ -19,6 +19,8 @@
 	</head>
 	<body>
 
+	{% block modal %}
+
 		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
 		  <div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
@@ -62,7 +64,8 @@
 		    </div>
 		  </div>
 		</div>
-
+		
+	{% endblock %}
 		<div class="container">
 		
 			{% if messages %}
