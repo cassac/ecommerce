@@ -10,7 +10,7 @@ var columnItem = function(imageUrl, title, price, detailsUrl){
                                 '<div class="info">' +
                                     '<div class="row">' +
                                         '<div class="price col-md-6">' +
-                                            '<h5>' +
+                                            '<h5 id="productTitle">' +
                                                 title +
                                             '</h5>' +
                                             '<h5 class="price-text-color">' +
