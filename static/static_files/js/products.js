@@ -2,12 +2,12 @@ $(document).on('click', '.addToCartBtn', function(event) {
 
   var quantity = $("input[type='number'][name='quantity']").val();
   var variationId = $('.product-variations option:selected').val();
-
+  
   $.ajax({
-    url: '/carts/item/' + variationId,
+    url: '/carts/item/' + variationId + '/?quantity=' + quantity,
     type: 'PUT',
     contentType: 'application/json;charset=UTF-8',
-      dataType: "json",
+      dataType: 'json',
       success: function(data){
         console.log(data);
       },
