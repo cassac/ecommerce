@@ -3,12 +3,12 @@ from rest_framework import serializers
 from carts.models import Cart, CartItem
 
 
-class CartSerializer(serializers.ModelSerializer):
+class CartSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Cart
 		fields = ('__all__')
 
-class CartItemSerializer(serializers.ModelSerializer):
+class CartItemSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = CartItem
