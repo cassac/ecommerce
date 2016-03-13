@@ -1,5 +1,21 @@
 $(document).on('click', '.addToCartBtn', function(event) {
+
   var quantity = $("input[type='number'][name='quantity']").val();
+  var variationId = $('.product-variations option:selected').val();
+
+  $.ajax({
+    url: '/carts/item/' + variationId,
+    type: 'PUT',
+    contentType: 'application/json;charset=UTF-8',
+      dataType: "json",
+      success: function(data){
+        console.log(data);
+      },
+      error: function(error){
+        console.log(error);
+      } 
+  }) // end ajax
+
 }); // end on click addToCartBtn
 
 $(document).on('click', '.detailsBtn', function(event) {
