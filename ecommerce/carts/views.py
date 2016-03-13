@@ -8,7 +8,7 @@ from carts.serializers import CartSerializer, CartItemSerializer
 class CartItemView(APIView):
 
 	# SWITCH REQUEST METHOD
-	def get(self, request, product_variation_id):
+	def put(self, request, product_variation_id):
 
 		if not request.session.get('cart_id'):
 			cart = Cart.objects.create()
