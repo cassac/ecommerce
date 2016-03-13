@@ -11,7 +11,7 @@ var generateVariationsMenu = function(variationsArray) {
 }
 
 var columnItem = function(imageUrl, title, price, detailsUrl){
-    
+
 	item = '<div class="col-sm-3">'+
                     '<div class="col-item">'+
                                 '<div class="photo">' +
@@ -34,7 +34,7 @@ var columnItem = function(imageUrl, title, price, detailsUrl){
                                         '</div>' +
                                     '</div>' +
                                     '<div class="separator clear-left">' +
-                                        '<p class="btn-add cartButton">' +
+                                        '<p class="btn-add addToCartBtn">' +
                                             '<i class="fa fa-shopping-cart"></i><a href="'+ '#' +'" class="hidden-sm">Add to cart</a></p>' +
                                         '<p class="btn-details detailsBtn">' +
                                             '<i class="fa fa-list"></i><a href="'+ detailsUrl +'" class="hidden-sm">More details</a></p>' +
