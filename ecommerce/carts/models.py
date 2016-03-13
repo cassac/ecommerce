@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from products.models import Product, ProductVariation
 
 class CartItem(models.Model):
-	cart = models.ForeignKey('Cart', null=True, blank=True)
+	cart = models.ForeignKey('Cart')
 	product = models.ForeignKey(Product)
 	quantity = models.IntegerField(blank=False)
 	variation = models.ManyToManyField(ProductVariation,blank=True)
