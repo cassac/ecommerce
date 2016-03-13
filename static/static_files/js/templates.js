@@ -1,7 +1,17 @@
 carouselfRowHead = '<div class="item active"><div class="row">';
 carouselfRowTail = '</div></div>';
 
+var generateVariationsMenu = function(variationsArray) {
+    menuHead = '<select class="form-control">';
+    menuTail = '</select>';
+    $.each(variationsArray, function(index, value) {
+        menuHead += '<option value="' + value.id + '">' + value.title + '</option>';
+    });
+    return menuHead + menuTail;
+}
+
 var columnItem = function(imageUrl, title, price, detailsUrl){
+    
 	item = '<div class="col-sm-3">'+
                     '<div class="col-item">'+
                                 '<div class="photo">' +
