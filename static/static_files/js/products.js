@@ -1,4 +1,8 @@
-$(document).on('click', '.detailsBtn', function(event){
+$(document).on('click', '.addToCartBtn', function(event) {
+  var quantity = $("input[type='number'][name='quantity']").val();
+}); // end on click addToCartBtn
+
+$(document).on('click', '.detailsBtn', function(event) {
 
   event.preventDefault();
 
@@ -46,6 +50,8 @@ $('#productDetailsModal').on('hidden.bs.modal', function(){
   $('#pictureDisplayThumbnails').empty();
   // removes variations menu from ...
   $('.product-variations').empty();
+  // resets product quantity to default value of 1
+  $("input[type='number'][name='quantity']").val('1');
 });
 
 var insertUpperCarousel = function(products) {
