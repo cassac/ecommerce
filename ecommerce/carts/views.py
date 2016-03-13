@@ -10,6 +10,8 @@ class CartItemView(APIView):
 	# SWITCH REQUEST METHOD
 	def put(self, request, product_variation_id):
 
+		quantity = request.query_params.get('quantity', 1)
+
 		if not request.session.get('cart_id'):
 			cart = Cart.objects.create()
 			request.session['cart_id'] = cart.id
@@ -24,18 +26,18 @@ class CartItemView(APIView):
 				and cartitem.product.id == product_variation.product.id:
 				cartitem.delete() # If found then delete
 				found_match = True # Set to True so CartItem won't be created below
-				temp = {'details': 'item removed from cart'}
+				temp = {'details': 'item removed from cart',
+						'total_cart_items': len(cart.cartitem_set.all())}
 
 		if not found_match:
 			new_item = CartItem(
 				cart=cart, 
 				product=product_variation.product,
-				quantity=1,
+				quantity=quantity,
 				)
 			new_item.save()
 			new_item.variation.add(product_variation)
-			temp = {'details': 'item added to cart'}
-
-		print cart.cartitem_set.all()
+			temp = {'details': 'item added to cart',
+					'total_cart_items': len(cart.cartitem_set.all())}
 
 		return Response(temp)
