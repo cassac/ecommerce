@@ -6,7 +6,7 @@ from products.models import Product, ProductVariation, ProductImage
 class ProductVariationSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = ProductVariation
-		fields = ('product', 'category', 'title', 'image', 'price', 'active',
+		fields = ('id', 'product', 'category', 'title', 'image', 'price', 'active',
 			'length', 'width', 'height', 'updated')
 
 class ProductImageSerialzer(serializers.HyperlinkedModelSerializer):
