@@ -43,9 +43,12 @@ Shop - {{ block.super }}
                                 <div class="product-price">$</div>
                                 <div class="product-stock">In Stock</div>
                                 <div class="product-variations"></div>
+                                <div class="product-quantity">
+                                    <input type="number" min="1" max="9" value="1" name="quantity" class="form-control">
+                                </div>
                                 <hr>
                                 <div class="btn-group cart">
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success addToCartBtn">
                                         Add to cart 
                                     </button>
                                 </div>
