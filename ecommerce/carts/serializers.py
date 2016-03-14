@@ -1,15 +1,26 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from carts.models import Cart, CartItem
+from products.models import ProductVariation
 
+class VariationSerializer(serializers.ModelSerializer):
 
-class CartSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
-		model = Cart
-		fields = ('__all__')
+		model = ProductVariation
+		fields = ('id', 'title')
 
-class CartItemSerializer(serializers.HyperlinkedModelSerializer):
+class CartItemSerializer(serializers.ModelSerializer):
+
+	variation = VariationSerializer(many=True)
 
 	class Meta:
 		model = CartItem
-		fields = ('__all__')
+		fields = ('id', 'product', 'variation')
+
+class CartSerializer(serializers.ModelSerializer):
+
+	cartitems = CartItemSerializer(many=True)
+
+	class Meta:
+		model = Cart
+		fields = ('id', 'cartitems')
