@@ -5,6 +5,28 @@ from carts.models import Cart, CartItem
 from products.models import ProductVariation
 from carts.serializers import CartSerializer, CartItemSerializer
 
+
+class CartListView(APIView):
+
+	def get(self, request):
+
+		if not request.session.get('cart_id'):
+			cart = Cart.objects.create()
+			request.session['cart_id'] = cart.id
+		context={'request': request}
+		cart = Cart.objects.get(pk=request.session.get('cart_id'))
+		serializer = CartSerializer(cart, context=context)
+		data = serializer.data
+
+		details = {'details': 'cart retrieved',
+				   'total_cart_items': len(cart.cartitems.all()),
+				   }
+
+		details.update(data) # combines returned serializer and details dictionary
+
+		return Response(details)	
+
+
 class CartItemView(APIView):
 
 	def put(self, request, product_variation_id):
@@ -42,8 +64,8 @@ class CartItemView(APIView):
 				)
 			new_item.save()
 			new_item.variation.add(product_variation)
-
-		serializer = CartSerializer(cart)
+		context={'request': request}
+		serializer = CartSerializer(cart, context=context)
 		data = serializer.data
 
 		details = {'details': 'cart updated',
