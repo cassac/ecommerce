@@ -1,20 +1,29 @@
-var generateCartItems = function() {
-    cartItem = '<li>' +
-                '<span class="item">' +
-                    '<span class="item-left">' +
-                        '<img src="'+ '#' + '" alt="" />' +
-                        '<span class="item-info">' +
-                            '<span>' + 'Item name' + '</span>' +
-                            '<span>' + '23$' + '</span>' +
+var generateCartItems = function(cartItems) {
+
+    cartItemList = '';
+
+    $.each(cartItems, function(index, value) {
+
+        cartItem = '<li class="cart-product-list-items">' +
+                    '<span class="item">' +
+                        '<span class="item-left">' +
+                            '<img src="'+ value.variation[0].image + '" alt="" />' +
+                            '<span class="item-info">' +
+                                '<span>' + 'value.title' + '</span>' +
+                                '<span>' + 'value.price' + '</span>' +
+                            '</span>' +
+                        '</span>' +
+                        '<span class="item-right">' +
+                            '<button class="btn btn-xs btn-danger pull-right">x</button>' +
                         '</span>' +
                     '</span>' +
-                    '<span class="item-right">' +
-                        '<button class="btn btn-xs btn-danger pull-right">x</button>' +
-                    '</span>' +
-                '</span>' +
-            '</li>';
+                '</li>';
 
-    return cartItem
+        cartItemList += cartItem;
+
+    });
+
+    return cartItemList;
 }
 
 carouselfRowHead = '<div class="item active"><div class="row">';
