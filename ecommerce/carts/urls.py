@@ -4,5 +4,6 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+	url(r'^$', views.CartListView.as_view(), name='cart-list'),
 	url(r'^item/(?P<product_variation_id>[0-9]*)/$', views.CartItemView.as_view(), name='cart-item'),
 ]
