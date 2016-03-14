@@ -3,11 +3,14 @@ from rest_framework import serializers
 from carts.models import Cart, CartItem
 from products.models import ProductVariation
 
-class VariationSerializer(serializers.ModelSerializer):
+
+class VariationSerializer(serializers.HyperlinkedModelSerializer):
+
+	image = serializers.ImageField(source='get_image')
 
 	class Meta:
 		model = ProductVariation
-		fields = ('id', 'title')
+		fields = ('id', 'title', 'image')
 
 class CartItemSerializer(serializers.ModelSerializer):
 
@@ -15,7 +18,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = CartItem
-		fields = ('id', 'product', 'variation')
+		fields = ('id', 'product', 'variation')#, 'image')
 
 class CartSerializer(serializers.ModelSerializer):
 
