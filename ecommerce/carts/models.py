@@ -27,6 +27,12 @@ class CartItem(models.Model):
 	# Display size variation
 		return ', '.join([v.title for v in self.variation.filter(category='size').all()])
 
+	def get_product_title(self):
+		return self.product.title
+
+	def get_product_price(self):
+		return self.product.price
+
 class Cart(models.Model):
 	id = models.AutoField(primary_key=True)
 	shipping_rate = models.DecimalField(null=True, blank=True, max_digits=6, decimal_places=2)
@@ -38,7 +44,7 @@ class Cart(models.Model):
 		return "<Cart: %d>" % (self.id)
 
 	def get_subtotal(self):
-		return Decimal(sum([cart_item.total_price() for cart_item in self.cartitem_set.all()]))
+		return Decimal(sum([cart_item.total_price() for cart_item in self.cartitems.all()]))
 
 	def get_tax(self):
 		two_places = Decimal(10) ** -2
