@@ -1,3 +1,30 @@
+$(function() {
+    $('.dropdown.keep-open').on({
+        "shown.bs.dropdown": function() {
+            $(this).data('closable', false);
+        },
+        "click": function(event) {
+            $(this).data('closable', false);
+        },
+        "hide.bs.dropdown": function(event) {
+            temp = $(this).data('closable');
+            $(this).data('closable', true);
+            return temp;
+        }
+    });
+});
+
+$(document).on('mouseleave mouseenter', '#navBarCart', function(event) {
+  var dropdown = $('.keep-open');
+  dropdown.toggleClass('open');
+  if ( dropdown.data('closable') ) {
+    dropdown.data('closable', false);
+  } else {
+    dropdown.data('closable', true);
+  }
+});
+
+
 $(document).on('click', '.addToCartBtn', function(event) {
 
   var quantity = $("input[type='number'][name='quantity']").val();
