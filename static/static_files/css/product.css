@@ -41,7 +41,9 @@ ul.dropdown-cart li .item-right{
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
 }
-
+ul.dropdown-cart img{
+    max-width:40px;
+}
 
 /* Product Details Modal */
 .product-rating{
