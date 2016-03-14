@@ -7,10 +7,9 @@ from carts.serializers import CartSerializer, CartItemSerializer
 
 class CartItemView(APIView):
 
-	# SWITCH REQUEST METHOD
 	def put(self, request, product_variation_id):
 
-		quantity = request.query_params.get('quantity', 1)
+		quantity = int(request.query_params.get('quantity', 1))
 
 		if not request.session.get('cart_id'):
 			cart = Cart.objects.create()
@@ -22,10 +21,17 @@ class CartItemView(APIView):
 
 		found_match = False # If product already in cart then remove else add
 		for cartitem in cart.cartitem_set.all():
-			if len(cartitem.variation.all().filter(title=product_variation.title))>0\
+
+			if len(cartitem.variation.all().filter(title=product_variation.title)) > 0\
 				and cartitem.product.id == product_variation.product.id:
-				cartitem.delete() # If found then delete
+
 				found_match = True # Set to True so CartItem won't be created below
+
+				if quantity != cartitem.quantity: # If difference in new quantity vs old quantity, user is updating not deleting
+					cartitem.quantity = quantity
+					cartitem.save()
+				else:
+					cartitem.delete() # Else user is delting
 				temp = {'details': 'item removed from cart',
 						'total_cart_items': len(cart.cartitem_set.all())}
 
