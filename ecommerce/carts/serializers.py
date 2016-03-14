@@ -15,10 +15,13 @@ class VariationSerializer(serializers.HyperlinkedModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
 
 	variation = VariationSerializer(many=True)
+	title = serializers.CharField(source='get_product_title')
+	price = serializers.CharField(source='get_product_price')
 
 	class Meta:
 		model = CartItem
-		fields = ('id', 'product', 'variation')#, 'image')
+		fields = ('id', 'product', 'variation', 'title', 'price', 
+			'quantity', 'total_price')
 
 class CartSerializer(serializers.ModelSerializer):
 
@@ -26,4 +29,4 @@ class CartSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Cart
-		fields = ('id', 'cartitems')
+		fields = ('id', 'cartitems', 'get_subtotal')
