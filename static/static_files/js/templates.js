@@ -9,8 +9,9 @@ var generateCartItems = function(cartItems) {
                         '<span class="item-left">' +
                             '<img src="'+ value.variation[0].image + '" alt="" />' +
                             '<span class="item-info">' +
-                                '<span>' + 'value.title' + '</span>' +
-                                '<span>' + 'value.price' + '</span>' +
+                                '<span>' + value.title + '</span>' +
+                                '<span>(' +value.variation[0].title + ')</span>' +
+                                '<span>' + value.price + ' x ' + value.quantity +'</span>' +
                             '</span>' +
                         '</span>' +
                         '<span class="item-right">' +
