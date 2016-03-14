@@ -20,7 +20,8 @@ class CartItemView(APIView):
 		product_variation = ProductVariation.objects.get(pk=product_variation_id)
 
 		found_match = False # If product already in cart then remove else add
-		for cartitem in cart.cartitem_set.all():
+
+		for cartitem in cart.cartitems.all():
 
 			if len(cartitem.variation.all().filter(title=product_variation.title)) > 0\
 				and cartitem.product.id == product_variation.product.id:
@@ -32,8 +33,6 @@ class CartItemView(APIView):
 					cartitem.save()
 				else:
 					cartitem.delete() # Else user is delting
-				temp = {'details': 'item removed from cart',
-						'total_cart_items': len(cart.cartitem_set.all())}
 
 		if not found_match:
 			new_item = CartItem(
@@ -43,7 +42,14 @@ class CartItemView(APIView):
 				)
 			new_item.save()
 			new_item.variation.add(product_variation)
-			temp = {'details': 'item added to cart',
-					'total_cart_items': len(cart.cartitem_set.all())}
 
-		return Response(temp)
+		serializer = CartSerializer(cart)
+		data = serializer.data
+
+		details = {'details': 'cart updated',
+				   'total_cart_items': len(cart.cartitems.all()),
+				   }
+
+		details.update(data) # combines returned serializer and details dictionary
+
+		return Response(details)
