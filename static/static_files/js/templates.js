@@ -1,3 +1,22 @@
+var generateCartItems = function() {
+    cartItem = '<li>' +
+                '<span class="item">' +
+                    '<span class="item-left">' +
+                        '<img src="'+ '#' + '" alt="" />' +
+                        '<span class="item-info">' +
+                            '<span>' + 'Item name' + '</span>' +
+                            '<span>' + '23$' + '</span>' +
+                        '</span>' +
+                    '</span>' +
+                    '<span class="item-right">' +
+                        '<button class="btn btn-xs btn-danger pull-right">x</button>' +
+                    '</span>' +
+                '</span>' +
+            '</li>';
+
+    return cartItem
+}
+
 carouselfRowHead = '<div class="item active"><div class="row">';
 carouselfRowTail = '</div></div>';
 
