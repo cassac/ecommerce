@@ -1,8 +1,38 @@
+var updateCart = function(variationId, quantity) {
+  $.ajax({
+    url: '/carts/item/' + variationId + '/?quantity=' + quantity,
+    type: 'PUT',
+    contentType: 'application/json;charset=UTF-8',
+      dataType: 'json',
+      success: function(data){
+        console.log(data);
+        return data;
+      },
+      error: function(error){
+        console.log(error);
+      } 
+  }) // end ajax
+
+}
+
+$(document).on('click', '.removeCartItemBtn', function(event) {
+  p = $( this ).closest('li');
+  variationId = p.find('.variationTitle').data('variation-id');
+  quantity = p.find('.cartItemQuantity').data('cart-item-quantity');
+
+  updateCart(variationId, quantity);
+
+  p.remove();
+
+});
+
 var displayCart = function(cart) {
+
   $('#cartSubtotal').text(cart.get_subtotal);
   $('.dropdown-cart .cart-product-list-items').remove();
   list = generateCartItems(cart.cartitems);
   $('.dropdown-cart').prepend(list);
+
 }
 
 $(function() {
@@ -52,18 +82,7 @@ $(document).on('click', '.addToCartBtn', function(event) {
   var quantity = $("input[type='number'][name='quantity']").val();
   var variationId = $('.product-variations option:selected').val();
   
-  $.ajax({
-    url: '/carts/item/' + variationId + '/?quantity=' + quantity,
-    type: 'PUT',
-    contentType: 'application/json;charset=UTF-8',
-      dataType: 'json',
-      success: function(data){
-        console.log(data);
-      },
-      error: function(error){
-        console.log(error);
-      } 
-  }) // end ajax
+  updateCart(variationId, quantity);
 
 }); // end on click addToCartBtn
 
