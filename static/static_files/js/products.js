@@ -1,4 +1,5 @@
 var displayCart = function(cart) {
+  $('#cartSubtotal').text(cart.get_subtotal);
   $('.dropdown-cart .cart-product-list-items').remove();
   list = generateCartItems(cart.cartitems);
   $('.dropdown-cart').prepend(list);
