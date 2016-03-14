@@ -18,9 +18,9 @@ class ProductImageSerialzer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
 	productvariation_set = ProductVariationSerializer(many=True, read_only=True)
-	productimage_set = ProductImageSerialzer(many=True, read_only=True)
+	productimages = ProductImageSerialzer(many=True, read_only=True)
 
 	class Meta:
 		model = Product
 		fields = ('id', 'slug', 'url', 'title', 'description', 'price', 
-			'sale_price', 'active', 'productvariation_set', 'productimage_set')
+			'sale_price', 'active', 'productvariation_set', 'productimages')
