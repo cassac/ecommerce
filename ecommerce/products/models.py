@@ -17,7 +17,7 @@ class Product(models.Model):
 		return self.title
 
 class ProductImage(models.Model):
-	product = models.ForeignKey(Product)
+	product = models.ForeignKey(Product, related_name='productimages')
 	image = models.ImageField(upload_to='products/images/')
 	active = models.BooleanField(default=True)
 	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -52,3 +52,11 @@ class ProductVariation(models.Model):
 	width = models.IntegerField(null=False)
 	height = models.IntegerField(null=False)
 	objects = VariationManager()
+
+	def get_image(self):
+		"""if variation image available return its location else
+		return its parents first image location"""
+		if self.image:
+			return self.image.image
+		else:
+			return self.product.productimages.first().image
