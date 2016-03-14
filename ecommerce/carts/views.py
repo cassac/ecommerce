@@ -32,7 +32,7 @@ class CartItemView(APIView):
 					cartitem.quantity = quantity
 					cartitem.save()
 				else:
-					cartitem.delete() # Else user is delting
+					cartitem.delete() # Else user is deleting
 
 		if not found_match:
 			new_item = CartItem(
