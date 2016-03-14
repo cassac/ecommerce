@@ -10,12 +10,14 @@ var generateCartItems = function(cartItems) {
                             '<img src="'+ value.variation[0].image + '" alt="" />' +
                             '<span class="item-info">' +
                                 '<span>' + value.title + '</span>' +
-                                '<span>(' +value.variation[0].title + ')</span>' +
-                                '<span>' + value.price + ' x ' + value.quantity +'</span>' +
+                                '<span class="variationTitle" data-variation-id='+ 
+                                    value.variation[0].id +'>(' + value.variation[0].title + ')</span>' +
+                                '<span class="cartItemQuantity" data-cart-item-quantity=' + value.quantity +'>' + 
+                                    value.price + ' x ' + value.quantity +'</span>' +
                             '</span>' +
                         '</span>' +
                         '<span class="item-right">' +
-                            '<button class="btn btn-xs btn-danger pull-right">x</button>' +
+                            '<button class="removeCartItemBtn btn btn-xs btn-danger pull-right">x</button>' +
                         '</span>' +
                     '</span>' +
                 '</li>';
